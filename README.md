@@ -116,7 +116,7 @@ You may not copy, modify, or distribute this software without permission.
 
 ## 👨‍💻 Author
 
-Created by [Your Name]
+Created by jonathan simandooev(logic) and chatgpt(code)
 
 ---
 
