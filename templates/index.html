@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Scheduler</title>
+    <style>
+        body { font-family: Arial; }
+        .red { color: red; }
+        .yellow { color: orange; }
+        .green { color: green; }
+    </style>
+</head>
+<body>
+
+<h1>Smart Scheduler</h1>
+
+<h2>Add Task</h2>
+<form method="POST">
+    <input name="name" placeholder="Task Name" required>
+
+    <select name="color">
+        <option value="🔴">Red</option>
+        <option value="🟡">Yellow</option>
+        <option value="🟢">Green</option>
+        <option value="⚫">Black</option>
+    </select>
+
+    <input name="duration" placeholder="Duration (min)">
+    <input name="days" placeholder="Mon,Tue,...">
+
+    <br>
+    Range (for yellow tasks):
+    <input name="range_start" placeholder="Start (HH:MM)">
+    <input name="range_end" placeholder="End (HH:MM)">
+
+    <br>
+    Fixed time (for red tasks):
+    <input name="start" placeholder="Start">
+    <input name="end" placeholder="End">
+
+    <br><br>
+    <button>Add</button>
+</form>
+
+<h2>Schedule</h2>
+
+{% for day, tasks in schedule.items() %}
+    <h3>{{ day }}</h3>
+    <ul>
+    {% for t in tasks %}
+        <li>
+            {{ t.name }} {{ t.color }}
+            {% if t.assigned_start %}
+                ({{ t.assigned_start }} - {{ t.assigned_end }})
+            {% elif t.start %}
+                ({{ t.start }} - {{ t.end }})
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+</body>
+</html>
